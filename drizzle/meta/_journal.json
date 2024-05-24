@@ -1,0 +1,34 @@
+{
+  "version": "6",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1716511068812,
+      "tag": "0000_slimy_sasquatch",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1716511212777,
+      "tag": "0001_puzzling_thing",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1716511329443,
+      "tag": "0002_flashy_retro_girl",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1716511668717,
+      "tag": "0003_luxuriant_starfox",
+      "breakpoints": true
+    }
+  ]
+}
