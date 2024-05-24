@@ -1,4 +1,4 @@
-import Elysia, { t } from "elysia";
+import Elysia, { Cookie, t } from "elysia";
 import { db } from "../../db/connection";
 import dayjs from "dayjs";
 import { auth } from "../auth";
@@ -7,7 +7,7 @@ import { eq } from "drizzle-orm";
 
 export const authenticateFromLink = new Elysia().use(auth).get(
   "/auth-links/authenticate",
-  async ({ query, jwt, setCookie, set }) => {
+  async ({ query, jwt, set, cookie: { name } }) => {
     const { code, redirect } = query;
 
     const authLinkFromCode = await db.query.authLinks.findFirst({
@@ -40,10 +40,14 @@ export const authenticateFromLink = new Elysia().use(auth).get(
       restaurantId: managedRestaurant?.id,
     });
 
-    setCookie("auth", token, {
+    name.set({
       httpOnly: true,
       maxAge: 60 * 60 * 24 * 7, // 7 days
       path: "/",
+      value: {
+        name: "auth",
+        token: token,
+      },
     });
 
     await db.delete(authLinks).where(eq(authLinks.code, code));
