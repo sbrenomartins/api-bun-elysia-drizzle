@@ -1,14 +1,9 @@
 /* eslint-disable drizzle/enforce-delete-with-where */
 
 import { faker } from "@faker-js/faker";
-import postgres from "postgres";
-import { env } from "../env";
-import { drizzle } from "drizzle-orm/postgres-js";
 import * as schema from "./schema";
 import { createId } from "@paralleldrive/cuid2";
-
-const connection = postgres(env.DATABASE_URL);
-const db = drizzle(connection, { schema });
+import { db } from "./connection";
 
 /** Reset database */
 await db.delete(schema.users);
